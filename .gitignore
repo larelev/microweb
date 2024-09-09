@@ -35,9 +35,9 @@
 /web/bundles/
 /web/uploads/
 
-# PHPUnit
-/app/phpunit.xml
-/phpunit.xml
+# PHPUnit ** Why?
+#/app/phpunit.xml
+#/phpunit.xml
 
 # Build data
 /build/
@@ -50,3 +50,16 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+# Misc cache files
+/.phpcs-cache
+/.phplint.cache/
+
+# Errors log
+/php_errors.log
+
+# IDE
+/.idea/
+
+# All extra cache files
+*.cache
