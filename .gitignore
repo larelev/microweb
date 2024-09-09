@@ -50,3 +50,10 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+# Misc cache files
+/.phpcs-cache
+/.phplint.cache/
+
+# Errors log
+/php_errors.log
