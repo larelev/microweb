@@ -23,11 +23,10 @@ class WebhooksController extends AbstractController
         try {
             $webhook = $this->serializer->deserialize($request->getContent(), Webhook::class, 'json');
             $webhook->setRawPayload($request->getContent());
-            dd($webhook);
+//            dd($webhook);
             return new Response(status: 204);
         } catch (\Throwable $exception) {
-
+            dd($exception->getMessage());
         }
-
     }
 }

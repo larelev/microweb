@@ -15,5 +15,6 @@ class NewsletterHandler implements WebhookHandlerInterface
     public function supports(Webhook $webhook): bool
     {
         // TODO: Implement supports() method.
+        return false;
     }
 }
