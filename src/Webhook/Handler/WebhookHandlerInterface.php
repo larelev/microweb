@@ -9,5 +9,6 @@ use App\DTO\Webhook;
 interface WebhookHandlerInterface
 {
     public function handle(Webhook $webhook): void;
+
     public function supports(Webhook $webhook): bool;
 }

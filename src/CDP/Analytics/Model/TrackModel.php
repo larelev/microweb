@@ -3,6 +3,7 @@
 namespace App\CDP\Analytics\Model;
 
 /* track Model should look like this when sent */
+
 class TrackModel implements ModelInterface
 {
     public function toArray(): array
@@ -33,4 +34,4 @@ class TrackModel implements ModelInterface
             'id' => '4a2b342d-6235-46a9-bc95-6e889b8e5de1' // user.client_id
         ];
     }
-};
+}
