@@ -17,9 +17,8 @@ class WebhooksController extends AbstractController
 {
     public function __construct(
         private SerializerInterface $serializer,
-        private HandlerDelegator    $handlerDelegator,
-    )
-    {
+        private HandlerDelegator $handlerDelegator,
+    ) {
     }
 
     #[Route(path: '/webhook', name: 'webhook', methods: ['POST'])]

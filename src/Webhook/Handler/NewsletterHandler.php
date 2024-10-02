@@ -8,7 +8,6 @@ use App\DTO\Webhook;
 
 class NewsletterHandler implements WebhookHandlerInterface
 {
-
     private const array NEWSLETTER_EVENT = [
         'newsletter.opened',
         'newsletter.subscribed',
@@ -24,7 +23,8 @@ class NewsletterHandler implements WebhookHandlerInterface
     {
         // TODO: Implement supports() method.
         return in_array(
-            $webhook->getEvent(), self::NEWSLETTER_EVENT
+            $webhook->getEvent(),
+            self::NEWSLETTER_EVENT
         );
     }
 }

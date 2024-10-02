@@ -13,10 +13,9 @@ class CdpClient
     private const string CDP_API_URL = 'https://api.cdp.com';
 
     public function __construct(
-        private readonly HttpClientInterface                 $httpClient,
+        private readonly HttpClientInterface $httpClient,
         #[Autowire('%cdp.api_key%')] private readonly string $apiKey,
-    )
-    {
+    ) {
     }
 
     /**
