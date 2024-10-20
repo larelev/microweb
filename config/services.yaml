@@ -1,0 +1,33 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    cdp.api_key: "%env(CDP_API_KEY)%"
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # In Symfony, the _instanceof configuration key allows you to automatically apply configuration settings to all services that implement a specific interface or extend a certain class. This is very useful for applying tags, method calls, or other configuration options uniformly across multiple services without needing to configure each one individually.
+    _instanceof:
+        App\Webhook\Handler\WebhookHandlerInterface:
+            tags: [ 'webhook.handler' ]
+        App\Forwarder\Newsletter\ForwarderInterface:
+            tags: [ 'forwarder.newsletter' ]
+
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
