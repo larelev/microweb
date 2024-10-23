@@ -56,7 +56,7 @@
 /.phplint.cache/
 
 # Errors log
-/php_errors.log
+php_errors.log
 
 # IDE
 /.idea/
