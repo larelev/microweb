@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DTO\Newsletter\Factory;
 
 use App\DTO\Newsletter\NewsletterWebhook;
@@ -20,11 +22,12 @@ class NewsletterWebhookFactory
     public function create(Webhook $webhook): NewsletterWebhook
     {
         try {
-            return $this->serializer->deserialize(
+            $newsletterWebhook = $this->serializer->deserialize(
                 $webhook->getRawPayload(),
                 NewsletterWebhook::class,
                 'json'
             );
+            return $newsletterWebhook;
         } catch (\Throwable $exception) {
             throw new WebhookCreationException($exception);
         }

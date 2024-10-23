@@ -1,7 +1,7 @@
 path: ./
 extensions:
-  - php
+    - php
 exclude:
-  - build
-  - var
-  - vendor
+    - build
+    - var
+    - vendor

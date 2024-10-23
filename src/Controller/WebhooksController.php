@@ -11,13 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
-use Throwable;
 
 class WebhooksController extends AbstractController
 {
     public function __construct(
         private SerializerInterface $serializer,
-        private HandlerDelegator $handlerDelegator,
+        private HandlerDelegator $handlerDelegator
     ) {
     }
 
@@ -29,8 +28,8 @@ class WebhooksController extends AbstractController
             $webhook->setRawPayload($request->getContent());
             $this->handlerDelegator->delegate($webhook);
             return new Response(status: 204);
-        } catch (Throwable $exception) {
-            dd($exception->getMessage());
+        } catch (\Throwable $exception) {
+            throw $exception;
         }
     }
 }
