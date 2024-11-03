@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Forwarder\Newsletter\Identify;
 
+use App\CDP\Analytics\Model\Subscription\Identify\IdentifyModel;
 use App\DTO\Newsletter\NewsletterWebhook;
+use App\Error\Exception\WebhookTypeException;
 use App\Forwarder\Newsletter\ForwarderInterface;
 
 class SubscriptionStartForwarder implements ForwarderInterface
@@ -16,8 +18,19 @@ class SubscriptionStartForwarder implements ForwarderInterface
         return $newsletterWebhook->getEvent() === self::SUPPORTED_EVENT;
     }
 
+    /**
+     * @throws WebhookTypeException
+     */
     public function forward(NewsletterWebhook $newsletterWebhook): void
     {
-        // TODO: Implement forward() method.
+        // Instantiate a class which models Identify data
+        $model = new IdentifyModel();
+
+        // Map the NewsletterWebhook data to the model
+        (new SubscriptionStartMapper())->map($newsletterWebhook, $model);
+
+        // Validate the model
+
+        // Use the CDP client to POST the data to the CDP
     }
 }

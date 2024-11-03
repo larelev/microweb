@@ -6,14 +6,15 @@ namespace App\Error\Exception;
 
 use Throwable;
 
-class WebhookCreationException extends WebhookException
+class WebhookTypeException extends WebhookException
 {
-    public function __construct(?Throwable $previous = null)
+    public function __construct(string $type, ?Throwable $previous = null)
     {
         parent::__construct(
             vsprintf(
-                'Creating NewsletterWebhook failed%s',
+                'Mapping the type %s to IdentifyModel target failed%s',
                 [
+                    $type,
                     PHP_EOL,
                 ],
             ),
