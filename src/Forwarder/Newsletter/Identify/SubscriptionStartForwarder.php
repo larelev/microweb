@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Forwarder\Newsletter\Identify;
 
 use App\CDP\Analytics\Model\Subscription\Identify\IdentifyModel;
+use App\CDP\Http\CdpClientInterface;
 use App\DTO\Newsletter\NewsletterWebhook;
 use App\Error\Exception\WebhookTypeException;
 use App\Forwarder\Newsletter\ForwarderInterface;
@@ -12,6 +13,10 @@ use App\Forwarder\Newsletter\ForwarderInterface;
 class SubscriptionStartForwarder implements ForwarderInterface
 {
     private const string SUPPORTED_EVENT = 'newsletter_subscribed';
+
+    public function __construct(private CdpClientInterface $cdpClient)
+    {
+    }
 
     public function supports(NewsletterWebhook $newsletterWebhook): bool
     {
@@ -32,5 +37,6 @@ class SubscriptionStartForwarder implements ForwarderInterface
         // Validate the model
 
         // Use the CDP client to POST the data to the CDP
+        $this->cdpClient->identify($model);
     }
 }

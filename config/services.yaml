@@ -33,3 +33,12 @@ services:
             tags: [ 'webhook.handler' ]
         App\Forwarder\Newsletter\ForwarderInterface:
             tags: [ 'forwarder.newsletter' ]
+
+    # Services which will be doubled for tests:
+    App\CDP\Http\CdpClientInterface: '@App\COP\Http\CdpClient'
+
+when@test:
+    services:
+        App\Tests\TestDoubles\CDP\Http\FakeCdpClient: ~
+        App\CDP\Http\CdpClientInterface: '@App\Tests\TestDoubles\CDP\Http\FakeCdpClient'
+
