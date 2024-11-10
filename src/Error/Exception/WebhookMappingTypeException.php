@@ -6,15 +6,16 @@ namespace App\Error\Exception;
 
 use Throwable;
 
-class WebhookTypeException extends WebhookException
+class WebhookMappingTypeException extends WebhookException
 {
-    public function __construct(string $type, ?Throwable $previous = null)
+    public function __construct(string $type, string $modelClass, ?Throwable $previous = null)
     {
         parent::__construct(
             vsprintf(
-                'Mapping the type %s to IdentifyModel target failed%s',
+                'Mapping the type %s to %s target failed%s',
                 [
                     $type,
+                    $modelClass,
                     PHP_EOL,
                 ],
             ),

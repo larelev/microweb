@@ -6,6 +6,7 @@ namespace App\DTO\Newsletter;
 
 use App\CDP\Analytics\Model\Subscription\SubscriptionSourceInterface;
 use App\DTO\User\User;
+use DateInterval;
 use DateTimeImmutable;
 
 class NewsletterWebhook implements SubscriptionSourceInterface
@@ -79,31 +80,69 @@ class NewsletterWebhook implements SubscriptionSourceInterface
 
     public function getProduct(): string
     {
-        // TODO: Implement getProduct() method.
         return $this->newsletter->getProductId();
     }
 
     public function getEventDate(): string
     {
-        // TODO: Implement getEventDate() method.
         return $this->timestamp->format('Y-m-d');
     }
 
     public function getSubscriptionId(): string
     {
-        // TODO: Implement getSubscriptionId() method.
         return $this->id;
     }
 
     public function getEmail(): string
     {
-        // TODO: Implement getEmail() method.
         return $this->user->getEmail();
     }
 
     public function getUserId(): string
     {
-        // TODO: Implement getUserId() method.
         return $this->user->getClientId();
+    }
+
+    public function requiresConsent(): bool
+    {
+        return isset(self::CONSENT_REGIONS[$this->user->getRegion()]);
+    }
+
+    public function getPlatform(): string
+    {
+        return 'web';
+    }
+
+    public function getProductName(): string
+    {
+        return $this->newsletter->getNewsletterId();
+    }
+
+    public function getRenewalDate(): string
+    {
+        $date = $this->timestamp;
+        $interval = new DateInterval('P1Y');
+
+        return $date->add($interval)->format('Y-m-d');
+    }
+
+    public function getStartDate(): string
+    {
+        return $this->timestamp->format('Y-m-d');
+    }
+
+    public function getStatus(): string
+    {
+        $status = 'subscribed';
+        if ($this->event === 'newsletter_unsubscribed') {
+            $status = 'unsubscribed';
+        }
+
+        return $status;
+    }
+
+    public function getType(): string
+    {
+        return 'newsletter';
     }
 }

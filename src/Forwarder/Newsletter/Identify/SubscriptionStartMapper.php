@@ -6,12 +6,12 @@ namespace App\Forwarder\Newsletter\Identify;
 
 use App\CDP\Analytics\Model\Subscription\Identify\IdentifyModel;
 use App\CDP\Analytics\Model\Subscription\SubscriptionSourceInterface;
-use App\Error\Exception\WebhookTypeException;
+use App\Error\Exception\WebhookMappingTypeException;
 
 class SubscriptionStartMapper
 {
     /**
-     * @throws WebhookTypeException
+     * @throws WebhookMappingTypeException
      */
     public function map(SubscriptionSourceInterface $source, IdentifyModel $target): void
     {
@@ -21,12 +21,9 @@ class SubscriptionStartMapper
             $target->setEmail($source->getEmail());
             $target->setSubscriptionId($source->getSubscriptionId());
             $target->setEventDate($source->getEventDate());
-
         } catch (\Throwable $exception) {
             $className = get_class($source);
-            throw new WebhookTypeException($className, $exception);
+            throw new WebhookMappingTypeException($className, 'IdentifyModel', $exception);
         }
-
     }
-
 }

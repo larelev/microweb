@@ -46,7 +46,4 @@ class FakeCdpClient implements CdpClientInterface
     {
         return $this->trackCallCount;
     }
-
-
-
 }
