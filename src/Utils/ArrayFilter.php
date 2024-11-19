@@ -13,7 +13,7 @@ class ArrayFilter
                 static::removeEmptyKeysRecursively($value);
             }
 
-            if (empty($value)) {
+            if ($value === null || $value === '') {
                 unset($array[$key]);
             }
         }

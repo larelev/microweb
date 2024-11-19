@@ -83,7 +83,7 @@ class WebhooksControllerTest extends WebTestCase
                 ]
             ],
             "properties" => [
-                "requires_consent" => true,
+                "requires_consent" => false,
                 "platform" => "web",
                 "product_name" => "newsletter-001",
                 "renewal_date" => "2025-12-12",

@@ -10,7 +10,6 @@ use App\Error\Exception\WebhookException;
 use App\Error\Exception\WebhookValidationException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
-use Throwable;
 
 class ModelValidatorTest extends TestCase
 {

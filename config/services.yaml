@@ -35,7 +35,7 @@ services:
             tags: [ 'forwarder.newsletter' ]
 
     # Services which will be doubled for tests:
-    App\CDP\Http\CdpClientInterface: '@App\COP\Http\CdpClient'
+    App\CDP\Http\CdpClientInterface: '@App\CDP\Http\CdpClient'
 
 when@test:
     services:

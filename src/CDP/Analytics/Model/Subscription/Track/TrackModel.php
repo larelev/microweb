@@ -207,7 +207,7 @@ class TrackModel implements ModelInterface
         return $this;
     }
 
-    public function isPromotion(): bool
+    public function getIsPromotion(): bool
     {
         return $this->isPromotion;
     }
