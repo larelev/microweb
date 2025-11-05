@@ -35,6 +35,7 @@ class WebhooksController extends AbstractController
             $this->handlerDelegator->delegate($webhook);
             return new Response(status: Response::HTTP_NO_CONTENT);
         } catch (Throwable $throwable) {
+            $this->logger->error('Webhook processing failed', ['exception' => $throwable]);
             $this->errorHandler->handle($throwable);
             return new Response(status: Response::HTTP_BAD_REQUEST);
         }

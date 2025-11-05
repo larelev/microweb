@@ -37,7 +37,7 @@ class WebhooksControllerTest extends WebTestCase
         $jsonWebhookPayload = file_get_contents($filename);
 
         $this->postJson($jsonWebhookPayload);
-        
+
         // Assert CdpClient::identify() called once
         $this->assertSame(1, $this->fakeCdpClient->getIdentifyCallCount());
 
@@ -94,7 +94,7 @@ class WebhooksControllerTest extends WebTestCase
 
         $this->assertSame(Response::HTTP_NO_CONTENT, $this->webTester->getResponse()->getStatusCode());
     }
-    
+
     public function testExecutionIsStoppedIfMandatoryInfoCannotBeMapped(): void
     {
         $filename = dirname(__FILE__) . '/payload-w-error.json';
@@ -105,8 +105,10 @@ class WebhooksControllerTest extends WebTestCase
         $webhookException = $this->fakeErrorHandler->getError();
         assert($webhookException instanceof WebhookException);
         $this->assertSame(1, $this->fakeErrorHandler->getHandleCount());
-        $this->assertStringContainsString('Could not map App\DTO\Newsletter\NewsletterWebhook to IdentifyMode', $webhookException->getMessage());
-
+        $this->assertStringContainsString(
+            'Could not map App\DTO\Newsletter\NewsletterWebhook to IdentifyMode',
+            $webhookException->getMessage()
+        );
     }
 
     public function testWebhookExceptionIsThrownIfIdentifyModelValidationFails(): void
@@ -122,7 +124,7 @@ class WebhooksControllerTest extends WebTestCase
         $this->assertSame(1, $this->fakeErrorHandler->getHandleCount());
 
         $this->assertStringContainsString(
-            'Invalid IdentifyModel properties: subscriptionId', 
+            'Invalid IdentifyModel properties: subscriptionId',
             $webhookException->getMessage()
         );
     }
@@ -138,5 +140,5 @@ class WebhooksControllerTest extends WebTestCase
             ],
             content: $payload,
         );
-    }       
+    }
 }

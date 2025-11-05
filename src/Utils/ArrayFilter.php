@@ -6,6 +6,9 @@ namespace App\Utils;
 
 class ArrayFilter
 {
+    /**
+     * @param array<array-key, mixed> $array
+     */
     public static function removeEmptyKeysRecursively(array &$array): void
     {
         foreach ($array as $key => &$value) {

@@ -21,16 +21,15 @@ class CdpClientTest extends TestCase
         ];
 
         $mockHttpClient = new MockHttpClient($responses);
-        $unit = new CdpClient($mockHttpClient, 'fake-api-key', 'http://example.com');
+        $unit = new CdpClient($mockHttpClient, 'fake-api-key', 'https://example.com');
 
         $mockTrackModel = $this->createMock(ModelInterface::class);
         $mockTrackModel->method('toArray')->willReturn(['test' => 'data']);
-        
+
         $this->expectException(WebhookException::class);
         $this->expectExceptionMessage('{"grave": "error"}');
-        
+
         // @phpstan-ignore-next-line argument.type
         $unit->track($mockTrackModel);
-
     }
 }

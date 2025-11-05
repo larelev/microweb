@@ -7,6 +7,6 @@ namespace App\Error;
 use Throwable;
 
 interface ErrorHandlerInterface
-{   
+{
     public function handle(Throwable $throwable): void;
 }

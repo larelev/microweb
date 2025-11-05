@@ -9,7 +9,6 @@ use Throwable;
 
 final class FakeErrorHandler implements ErrorHandlerInterface
 {
-
     private int $handleCount = 0;
     private ?Throwable $lastHandledThrowable = null;
 
