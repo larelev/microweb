@@ -15,7 +15,8 @@ class CdpClient implements CdpClientInterface
 
     public function __construct(
         private HttpClientInterface $httpClient,
-        #[Autowire('%cdp.api_key%')] private string $apiKey
+        #[Autowire('%cdp.api_key%')] private string $apiKey,
+        #[Autowire('%env(CDP_URL)%')] private string $cdpUrl
     ) {
     }
 
