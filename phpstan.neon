@@ -4,4 +4,14 @@ parameters:
     level: 9
     paths:
         - src
-    ignoreErrors: []
+    bootstrapFiles:
+        - vendor/autoload.php
+    # Ignorer les erreurs de dépréciation pour les dépendances externes
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # Ignorer les erreurs de compatibilité PHP 8.4 dans les dépendances
+        - '#Deprecated: .* parameter .* as nullable is deprecated#'
+        - '#Fatal error: Type of .* must be compatible with .*#'
+        - '#Constant E_STRICT is deprecated#'
+        # Ignorer l'erreur pour l'ID auto-généré par Doctrine
+        - '#Property App\\Entity\\JobApplication::\$id \(int\|null\) is never assigned int so it can be removed from the property type\.#'

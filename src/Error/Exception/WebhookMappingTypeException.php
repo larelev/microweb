@@ -12,11 +12,10 @@ class WebhookMappingTypeException extends WebhookException
     {
         parent::__construct(
             vsprintf(
-                'Mapping the type %s to %s target failed%s',
+                'Could not map %s to %s',
                 [
                     $type,
                     $modelClass,
-                    PHP_EOL,
                 ],
             ),
             500,
